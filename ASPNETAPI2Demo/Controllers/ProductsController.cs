@@ -15,6 +15,7 @@ namespace ASPNETAPI2Demo.Controllers
     /// <summary>
     /// 
     /// </summary>
+    [ValidateModel]
     public class ProductsController : ApiController
     {
         private FabricsEntities1 db = new FabricsEntities1();
@@ -55,10 +56,7 @@ namespace ASPNETAPI2Demo.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult PutProduct(int id, Product product)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+            
 
             if (id != product.ProductId)
             {
@@ -90,10 +88,6 @@ namespace ASPNETAPI2Demo.Controllers
         [ResponseType(typeof(Product))]
         public IHttpActionResult PostProduct(Product product)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
 
             db.Product.Add(product);
             db.SaveChanges();
@@ -130,10 +124,7 @@ namespace ASPNETAPI2Demo.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult PatchProduct(int id, ProductViewModel p)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+            
 
             var item = db.Product.Find(id);
 
