@@ -33,7 +33,7 @@ namespace ASPNETAPI2Demo.Controllers
 
         // GET: api/Clients/5
         [ResponseType(typeof(Client))]
-        [Route("{id:int}")]
+        [Route("{id:int}",Name = "GetClientById")]
         public IHttpActionResult GetClient(int id)
         {
             Client client = db.Client.Find(id);
@@ -136,7 +136,7 @@ namespace ASPNETAPI2Demo.Controllers
             db.Client.Add(client);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = client.ClientId }, client);
+            return CreatedAtRoute("GetClientById", new { id = client.ClientId }, client);
         }
 
         // DELETE: api/Clients/5
