@@ -13,6 +13,9 @@ namespace ASPNETAPI2Demo
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            //MVC add router attributes
+            //routes.MapMvcAttributeRoutes
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

@@ -15,6 +15,7 @@ namespace ASPNETAPI2Demo.Controllers
     /// <summary>
     /// 
     /// </summary>
+    [RoutePrefix("clients")]
     public class ClientsController : ApiController
     {
         private FabricsEntities1 db = new FabricsEntities1();
@@ -24,7 +25,7 @@ namespace ASPNETAPI2Demo.Controllers
         }
 
         // GET: api/Clients
-        [Route("clients")]
+        [Route("")]
         public IQueryable<Client> GetClient()
         {
             return db.Client;
@@ -32,7 +33,7 @@ namespace ASPNETAPI2Demo.Controllers
 
         // GET: api/Clients/5
         [ResponseType(typeof(Client))]
-        [Route("clients/{id}")]
+        [Route("{id:int}")]
         public IHttpActionResult GetClient(int id)
         {
             Client client = db.Client.Find(id);
@@ -45,7 +46,7 @@ namespace ASPNETAPI2Demo.Controllers
         }
 
         [ResponseType(typeof(Order))]
-        [Route("clients/{id}/orders")]
+        [Route("{id}/orders")]
         public IHttpActionResult GetClientOrders(int id)
         {
             var orders = db.Order.Where(p => p.ClientId == id);
@@ -53,12 +54,11 @@ namespace ASPNETAPI2Demo.Controllers
             return Ok(orders);
         }
 
-
         [ResponseType(typeof(Order))]
-        [Route("clients/{id}/orders/{orderId}")]
+        [Route("{id}/orders/{orderId}")]
         public IHttpActionResult GetClientOrder(int id, int orderId)
         {
-            var order = db.Order.Where(p => p.ClientId == id && p.OrderId == orderId);
+            var order = db.Order.FirstOrDefault(p => p.ClientId == id && p.OrderId == orderId);
             if (order == null)
             {
                 return NotFound();
@@ -67,7 +67,7 @@ namespace ASPNETAPI2Demo.Controllers
             return Ok(order);
         }
 
-        [Route("clients/{id}/orders/pending")]
+        [Route("{id}/orders/pending")]
         public IHttpActionResult GetClientOrdersPending(int id)
         {
             var orders = db.Order.Where(p => p.ClientId == id && p.OrderStatus == "P");
@@ -89,6 +89,7 @@ namespace ASPNETAPI2Demo.Controllers
 
         // PUT: api/Clients/5
         [ResponseType(typeof(void))]
+        [Route("")]
         public IHttpActionResult PutClient(int id, Client client)
         {
             if (!ModelState.IsValid)
@@ -123,6 +124,7 @@ namespace ASPNETAPI2Demo.Controllers
         }
 
         // POST: api/Clients
+        [Route("")]
         [ResponseType(typeof(Client))]
         public IHttpActionResult PostClient(Client client)
         {
@@ -139,6 +141,7 @@ namespace ASPNETAPI2Demo.Controllers
 
         // DELETE: api/Clients/5
         [ResponseType(typeof(Client))]
+        [Route("")]
         public IHttpActionResult DeleteClient(int id)
         {
             Client client = db.Client.Find(id);
