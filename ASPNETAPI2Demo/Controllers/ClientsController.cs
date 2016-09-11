@@ -60,6 +60,60 @@ namespace ASPNETAPI2Demo.Controllers
             return Json(db.Client.Find(id));
         }
 
+        [Route("~/clients/type4/{id:int}")]
+        public HttpResponseMessage GetClientType4(int id)
+        {
+            var data = db.Client.Find(id);
+
+            return Request.CreateResponse(HttpStatusCode.OK, data);
+        }
+
+
+        [Route("~/clients/type5/{id:int}")]
+        public HttpResponseMessage GetClientType5(int id)
+        {
+            var data = db.Client.Find(id);
+
+            return new HttpResponseMessage(HttpStatusCode.OK)
+            {
+                Content = new ObjectContent<Client>(data,
+                    GlobalConfiguration.Configuration.Formatters.JsonFormatter)
+            };
+        }
+
+        [Route("~/clients/type6/{id:int}")]
+        public HttpResponseMessage GetClientType6(int id)
+        {
+            var data = db.Client.Find(id);
+
+            return new HttpResponseMessage(HttpStatusCode.OK)
+            {
+                ReasonPhrase = "Hello World",
+                Content = new ObjectContent<Client>(data,
+                    GlobalConfiguration.Configuration.Formatters.JsonFormatter)
+            };
+        }
+
+
+        [Route("~/clients/type6/{id:int}")]
+        public HttpResponseMessage GetClientType6(int id)
+        {
+            var data = db.Client.Find(id);
+
+            return new HttpResponseMessage(HttpStatusCode.OK)
+            {
+                ReasonPhrase = "Hello World",
+                Content = new ObjectContent<Client>(data,
+                    GlobalConfiguration.Configuration.Formatters.JsonFormatter)
+            };
+        }
+
+        //[Route("~/clients/type8/{id:int}")]
+        //public HttpResponseMessage GetClientType8(int id)
+        //{
+        //    return new HttpResponseMessage() { StatusCode = HttpStatusCode.NotFound, Content = new StringContent("FION", Encoding.GetEncoding("Big5")) };
+        //}
+
         [ResponseType(typeof(Order))]
         [Route("{id}/orders")]
         public IHttpActionResult GetClientOrders(int id)
