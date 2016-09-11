@@ -45,6 +45,21 @@ namespace ASPNETAPI2Demo.Controllers
             return Ok(client);
         }
 
+       
+        [Route("~/api/clients/type2/{id:int}")]
+        public Client GetClientType2(int id)
+        {
+            Client client = db.Client.Find(id);
+            return client;
+        }
+
+        
+        [Route("~/api/clients/type3/{id:int}")]
+        public IHttpActionResult GetClientType3(int id)
+        {
+            return Json(db.Client.Find(id));
+        }
+
         [ResponseType(typeof(Order))]
         [Route("{id}/orders")]
         public IHttpActionResult GetClientOrders(int id)
@@ -89,7 +104,7 @@ namespace ASPNETAPI2Demo.Controllers
 
         // PUT: api/Clients/5
         [ResponseType(typeof(void))]
-        [Route("")]
+        [Route("{id}")]
         public IHttpActionResult PutClient(int id, Client client)
         {
             if (!ModelState.IsValid)
@@ -124,7 +139,7 @@ namespace ASPNETAPI2Demo.Controllers
         }
 
         // POST: api/Clients
-        [Route("")]
+        [Route("{id}")]
         [ResponseType(typeof(Client))]
         public IHttpActionResult PostClient(Client client)
         {
@@ -141,7 +156,7 @@ namespace ASPNETAPI2Demo.Controllers
 
         // DELETE: api/Clients/5
         [ResponseType(typeof(Client))]
-        [Route("")]
+        [Route("{id}")]
         public IHttpActionResult DeleteClient(int id)
         {
             Client client = db.Client.Find(id);
