@@ -94,18 +94,21 @@ namespace ASPNETAPI2Demo.Controllers
             };
         }
 
-
-        [Route("~/clients/type6/{id:int}")]
-        public HttpResponseMessage GetClientType6(int id)
+        [Route("~/clients/type7/{id:int}")]
+        public HttpResponseMessage GetClientType7(int id)
         {
             var data = db.Client.Find(id);
 
-            return new HttpResponseMessage(HttpStatusCode.OK)
+            var res = new HttpResponseMessage(HttpStatusCode.OK)
             {
                 ReasonPhrase = "Hello World",
                 Content = new ObjectContent<Client>(data,
                     GlobalConfiguration.Configuration.Formatters.JsonFormatter)
             };
+
+            res.Headers.Add("X-JobId", "1");
+
+            return res;
         }
 
         //[Route("~/clients/type8/{id:int}")]
