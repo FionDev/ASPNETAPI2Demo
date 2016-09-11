@@ -113,4 +113,3 @@ C:\FionDoc\GitFionDev\ASPNETAPI2Demo\ASPNETAPI2Demo\bin\zh-Hant\Microsoft.Owin.S
 C:\FionDoc\GitFionDev\ASPNETAPI2Demo\ASPNETAPI2Demo\bin\zh-Hant\System.Web.Http.Owin.resources.dll
 C:\FionDoc\GitFionDev\ASPNETAPI2Demo\ASPNETAPI2Demo\obj\Debug\ASPNETAPI2Demo.dll
 C:\FionDoc\GitFionDev\ASPNETAPI2Demo\ASPNETAPI2Demo\obj\Debug\ASPNETAPI2Demo.pdb
-C:\FionDoc\GitFionDev\ASPNETAPI2Demo\ASPNETAPI2Demo\obj\Debug\ASPNETAPI2Demo.csprojResolveAssemblyReference.cache
