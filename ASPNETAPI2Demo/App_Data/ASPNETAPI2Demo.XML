@@ -481,6 +481,11 @@
             </summary>
             <param name="documentPath">The physical path to XML document.</param>
         </member>
+        <member name="T:ASPNETAPI2Demo.Controllers.ProductsController">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="M:ASPNETAPI2Demo.Controllers.ProductsController.#ctor">
             <summary>
             
