@@ -126,6 +126,40 @@ namespace ASPNETAPI2Demo.Controllers
             base.Dispose(disposing);
         }
 
+
+        [ResponseType(typeof(void))]
+        public IHttpActionResult PatchProduct(int id, ProductViewModel p)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var item = db.Product.Find(id);
+
+            item.Price = p.Price;
+
+            item.Stock = p.Stock;
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!ProductExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return Ok(item);
+        }
+
         private bool ProductExists(int id)
         {
             return db.Product.Count(e => e.ProductId == id) > 0;
